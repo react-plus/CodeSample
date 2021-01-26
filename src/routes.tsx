@@ -1,0 +1,34 @@
+import React, { FC } from 'react';
+import { RouteComponentProps } from 'react-router';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
+import HomePage from 'pages/Home';
+import SignInPage from 'pages/SignIn';
+
+type RouteProps = {
+  path: string;
+  exact?: boolean;
+  component: React.FC<RouteComponentProps>;
+  routes?: RouteProps[] | undefined;
+};
+
+const routes: RouteProps[] = [
+  { path: '/', exact: true, component: HomePage },
+  { path: '/sign-in', exact: true, component: SignInPage },
+];
+
+const RouteWithSubRoutes: FC<RouteProps> = (route) => (
+  <Route path={route.path} exact={route.exact} component={route.component} />
+);
+
+const RootRoute: FC = () => (
+  <Router>
+    <Switch>
+      {routes.map((route, i) => (
+        <RouteWithSubRoutes key={i} {...route} />
+      ))}
+    </Switch>
+  </Router>
+);
+
+export default RootRoute;
