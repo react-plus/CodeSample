@@ -1,6 +1,6 @@
 ## Description
 
-This is sample code for sign-in feature
+こちらはログイン機能のサンプルソースコードです。
 
 ## Tech Stack
 
@@ -22,14 +22,14 @@ This is sample code for sign-in feature
 
 ## Available Scripts
 
-In the project directory, you can run:
+プロジェクトディレクトリで以下を実行できます。
 
 ### `yarn start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+アプリを開発モードで実行する。\
+[http://localhost:3000](http://localhost:3000)を開いたら、ブラウザーで機能を閲覧できる。
 
 ### `yarn build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+本番用のアプリをビルドフォルダーにビルドします。\
+Reactを本番モードで正しくバンドルし、ビルドを最適化して
