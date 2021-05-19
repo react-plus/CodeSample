@@ -14,5 +14,6 @@ export type RegisterParamsRequest = {
 };
 
 export type RegisterResponse = {
-  data: null;
+  success: boolean;
+  token: string;
 };

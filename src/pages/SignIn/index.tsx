@@ -25,7 +25,7 @@ const SignInPage: FC = () => {
   return (
     <StyledWrapper>
       <div className="main">
-        <Form className="form" layout="vertical" onFinish={(values) => handleSubmit(values)}>
+        <Form className="form" layout="vertical" onFinish={handleSubmit}>
           <Typography.Title className="mb-6 text-center">Sign-in</Typography.Title>
           <Form.Item
             label="Email address:"

@@ -1,26 +1,32 @@
 import React, { FC, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { Form, Input, Button, Typography } from 'antd';
+import { Form, Input, Button, Typography, message } from 'antd';
 
-import { login } from '../../containers/Auth/thunks';
+import { register } from 'containers/Auth/thunks';
 
 import StyledWrapper from './styles';
+import { AppDispatch } from 'types';
 
 const SignUpPage: FC = () => {
   const history = useHistory();
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
 
   const handleSubmit = useCallback(async (values) => {
-    await dispatch(login(values));
+    message.loading({ content: 'Loading...', key: 'login' });
+    const resultAction = await dispatch(register(values));
+    if (register.rejected.match(resultAction)) {
+      message.error({ content: 'Email or password invalid', key: 'login' });
+      return;
+    }
     history.push('/');
   }, []);
 
   return (
     <StyledWrapper>
       <div className="main">
-        <Form className="form" layout="vertical" onFinish={(values) => handleSubmit(values)}>
-          <Typography.Title className="mb-6 text-center">Sign-in</Typography.Title>
+        <Form className="form" layout="vertical" onFinish={handleSubmit}>
+          <Typography.Title className="mb-6 text-center">Register account</Typography.Title>
           <Form.Item
             label="Email address:"
             name="email"
@@ -32,6 +38,30 @@ const SignUpPage: FC = () => {
             ]}
           >
             <Input name="username" placeholder="email@example.com" autoComplete="new-password" />
+          </Form.Item>
+          <Form.Item
+            label="First Name:"
+            name="firstName"
+            rules={[
+              {
+                required: true,
+                message: 'First Name is a required field!',
+              },
+            ]}
+          >
+            <Input name="firstName" placeholder="First Name" />
+          </Form.Item>
+          <Form.Item
+            label="Last Name:"
+            name="lastName"
+            rules={[
+              {
+                required: true,
+                message: 'Last Name is a required field!',
+              },
+            ]}
+          >
+            <Input name="lastName" placeholder="Last Name" />
           </Form.Item>
           <Form.Item
             label="Password:"

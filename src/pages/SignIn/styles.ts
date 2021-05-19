@@ -1,6 +1,8 @@
 import styled from 'styled-components';
+import bgImage from 'assets/images/nicolas-j-leclercq-NXtjwh5vT_A-unsplash.jpg';
 
 export default styled.div`
+  background: url(${bgImage}) center top / cover no-repeat;
   display: flex;
   min-height: 100vh;
   -webkit-box-align: center;

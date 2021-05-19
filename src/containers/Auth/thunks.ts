@@ -9,3 +9,11 @@ export const login = createAsyncThunk<LoginResponse, LoginParamsRequest>('auth/l
   }
   return data;
 });
+
+export const register = createAsyncThunk<LoginResponse, LoginParamsRequest>('auth/register', async (params) => {
+  const { data } = await authService.register(params);
+  if (!data.success) {
+    throw new Error('Register invalid');
+  }
+  return data;
+});
