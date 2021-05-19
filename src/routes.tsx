@@ -37,7 +37,7 @@ const RootRoute: FC = () => {
   const auth = useSelector(authSelector);
   return (
     <Router>
-      <div>
+      <div style={{ height: '100%' }}>
         <Switch>
           <Route path="/sign-in">
             <SignInPage />

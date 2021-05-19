@@ -1,5 +1,5 @@
 import React, { FC, useCallback } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { Form, Input, Button, message, Typography } from 'antd';
 
@@ -55,6 +55,7 @@ const SignInPage: FC = () => {
           <Button htmlType="submit" type="primary" block className="mt-6">
             Submit
           </Button>
+          Or <Link to="/sign-up">Register now!</Link>
         </Form>
       </div>
     </StyledWrapper>

@@ -9,6 +9,7 @@ import reportWebVitals from 'reportWebVitals';
 
 import 'tailwindcss/dist/tailwind.min.css';
 import 'antd/dist/antd.css';
+import './App.css';
 
 ReactDOM.render(
   <React.StrictMode>

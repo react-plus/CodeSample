@@ -1,3 +1,6 @@
 import styled from 'styled-components';
 
-export default styled.div``;
+export const Logo = styled.div`
+  color: #fff;
+  font-size: 28px;
+`;
