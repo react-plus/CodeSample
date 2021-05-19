@@ -14,12 +14,12 @@ const persistConfig = {
 
 const containersReducer = combineReducers({
   app: appContainerReducer,
-  auth: authReducer,
 });
 
 const reducers = {
   containers: containersReducer,
   home: homeReducer,
+  auth: authReducer,
 };
 
 const rootReducer = combineReducers(reducers);

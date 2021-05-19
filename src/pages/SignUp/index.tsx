@@ -13,12 +13,13 @@ const SignUpPage: FC = () => {
   const dispatch: AppDispatch = useDispatch();
 
   const handleSubmit = useCallback(async (values) => {
-    message.loading({ content: 'Loading...', key: 'login' });
+    message.loading({ content: 'Loading...', key: 'register' });
     const resultAction = await dispatch(register(values));
     if (register.rejected.match(resultAction)) {
-      message.error({ content: 'Email or password invalid', key: 'login' });
+      message.error({ content: 'Email or password invalid', key: 'register' });
       return;
     }
+    message.success({ content: 'Success', key: 'register' });
     history.push('/');
   }, []);
 
@@ -37,7 +38,7 @@ const SignUpPage: FC = () => {
               },
             ]}
           >
-            <Input name="username" placeholder="email@example.com" autoComplete="new-password" />
+            <Input name="email" placeholder="email@example.com" />
           </Form.Item>
           <Form.Item
             label="First Name:"
@@ -65,7 +66,7 @@ const SignUpPage: FC = () => {
           </Form.Item>
           <Form.Item
             label="Password:"
-            name="password"
+            name="passWord"
             rules={[
               {
                 required: true,
@@ -73,7 +74,7 @@ const SignUpPage: FC = () => {
               },
             ]}
           >
-            <Input.Password name="password" placeholder="******" autoComplete="new-password" />
+            <Input.Password name="passWord" placeholder="******" autoComplete="new-password" />
           </Form.Item>
           <Button htmlType="submit" type="primary" block className="mt-6">
             Submit

@@ -19,6 +19,7 @@ const SignInPage: FC = () => {
       message.error({ content: 'Email or password invalid', key: 'login' });
       return;
     }
+    message.success({ content: 'Success', key: 'login' });
     history.push('/');
   }, []);
 
@@ -37,11 +38,11 @@ const SignInPage: FC = () => {
               },
             ]}
           >
-            <Input name="username" placeholder="email@example.com" autoComplete="new-password" />
+            <Input name="email" placeholder="email@example.com" autoComplete="new-password" />
           </Form.Item>
           <Form.Item
             label="Password:"
-            name="password"
+            name="passWord"
             rules={[
               {
                 required: true,
@@ -49,7 +50,7 @@ const SignInPage: FC = () => {
               },
             ]}
           >
-            <Input.Password name="password" placeholder="******" autoComplete="new-password" />
+            <Input.Password name="passWord" placeholder="******" autoComplete="new-password" />
           </Form.Item>
           <Button htmlType="submit" type="primary" block className="mt-6">
             Submit
