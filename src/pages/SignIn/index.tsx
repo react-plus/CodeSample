@@ -1,19 +1,24 @@
 import React, { FC, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { Form, Input, Button, Typography } from 'antd';
+import { Form, Input, Button, message, Typography } from 'antd';
 
-import { login } from '../../containers/Auth/thunks';
+import { AppDispatch } from 'types';
+import { login } from 'containers/Auth/thunks';
 
 import StyledWrapper from './styles';
 
 const SignInPage: FC = () => {
   const history = useHistory();
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
 
   const handleSubmit = useCallback(async (values) => {
-    await dispatch(login(values));
-    console.log('history', values);
+    message.loading({ content: 'Loading...', key: 'login' });
+    const resultAction = await dispatch(login(values));
+    if (login.rejected.match(resultAction)) {
+      message.error({ content: 'Email or password invalid', key: 'login' });
+      return;
+    }
     history.push('/');
   }, []);
 

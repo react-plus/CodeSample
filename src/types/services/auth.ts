@@ -4,7 +4,8 @@ export type LoginParamsRequest = {
 };
 
 export type LoginResponse = {
-  data: null;
+  success: boolean;
+  token: string;
 };
 
 export type RegisterParamsRequest = {
