@@ -1,5 +1,6 @@
 import axios, { AxiosInstance } from 'axios';
 import config from 'config';
+import { store } from 'store';
 
 const instance: AxiosInstance = axios.create({
   baseURL: config.API_URL,
@@ -8,7 +9,7 @@ const instance: AxiosInstance = axios.create({
 
 instance.interceptors.request.use(
   (config) => {
-    config.headers['X-Header-Token'] = '';
+    config.headers['X-Header-Token'] = store.getState().auth.token;
     return config;
   },
   (error) => {
