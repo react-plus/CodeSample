@@ -7,13 +7,12 @@ import { login } from '../../containers/Auth/thunks';
 
 import StyledWrapper from './styles';
 
-const SignInPage: FC = () => {
+const SignUpPage: FC = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
   const handleSubmit = useCallback(async (values) => {
     await dispatch(login(values));
-    console.log('history', values);
     history.push('/');
   }, []);
 
@@ -55,4 +54,4 @@ const SignInPage: FC = () => {
   );
 };
 
-export default SignInPage;
+export default SignUpPage;

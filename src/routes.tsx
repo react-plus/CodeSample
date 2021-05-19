@@ -1,9 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { FC } from 'react';
 import { BrowserRouter as Router, RouteProps, Switch, Route, Redirect } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import HomePage from 'pages/Home';
 import SignInPage from 'pages/SignIn';
+import SignUpPage from 'pages/SignUp';
+import { authSelector } from 'containers/Auth/selector';
 
 interface PrivateRouteProps extends RouteProps {
   children?: React.ReactNode;
@@ -31,19 +34,22 @@ const PrivateRoute = ({ children, isSignedIn, ...rest }: PrivateRouteProps) => {
 };
 
 const RootRoute: FC = () => {
+  const auth = useSelector(authSelector);
   return (
     <Router>
-      <Switch>
-        <PrivateRoute path="/" isSignedIn={true}>
-          <HomePage />
-        </PrivateRoute>
-        <Route path="/sign-in">
-          <SignInPage />
-        </Route>
-        <Route path="/sign-up">
-          <SignInPage />
-        </Route>
-      </Switch>
+      <div>
+        <Switch>
+          <Route path="/sign-in">
+            <SignInPage />
+          </Route>
+          <Route path="/sign-up">
+            <SignUpPage />
+          </Route>
+          <PrivateRoute isSignedIn={!!auth.token}>
+            <HomePage />
+          </PrivateRoute>
+        </Switch>
+      </div>
     </Router>
   );
 };
