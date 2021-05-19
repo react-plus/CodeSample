@@ -6,22 +6,21 @@ import HomePage from 'pages/Home';
 import SignInPage from 'pages/SignIn';
 
 interface PrivateRouteProps extends RouteProps {
-  // tslint:disable-next-line:no-any
-  component?: any;
+  children?: React.ReactNode;
   isSignedIn?: boolean;
 }
 
-const PrivateRoute = ({ component, isSignedIn, ...rest }: PrivateRouteProps) => {
+const PrivateRoute = ({ children, isSignedIn, ...rest }: PrivateRouteProps) => {
   return (
     <Route
       {...rest}
       render={({ location }) =>
         isSignedIn ? (
-          component
+          children
         ) : (
           <Redirect
             to={{
-              pathname: '/login',
+              pathname: '/sign-in',
               state: { from: location },
             }}
           />
@@ -35,9 +34,15 @@ const RootRoute: FC = () => {
   return (
     <Router>
       <Switch>
-        <PrivateRoute path="/" exact component={HomePage} />
-        <Route path="/sign-in" exact component={SignInPage} />
-        <Route path="/sign-up" exact component={SignInPage} />
+        <PrivateRoute path="/" isSignedIn={true}>
+          <HomePage />
+        </PrivateRoute>
+        <Route path="/sign-in">
+          <SignInPage />
+        </Route>
+        <Route path="/sign-up">
+          <SignInPage />
+        </Route>
       </Switch>
     </Router>
   );

@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { Form, Input, Button, Typography } from 'antd';
 
-import { login } from './thunks';
+import { login } from '../../containers/Auth/thunks';
 
 import StyledWrapper from './styles';
 
@@ -11,22 +11,16 @@ const HomePage: FC = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const handleSubmit = useCallback(async () => {
-    await dispatch(login({ email: 'mickey@react-plsu.com', password: '121212' }));
+  const handleSubmit = useCallback(async (values) => {
+    await dispatch(login(values));
+    console.log('history', values);
     history.push('/');
   }, []);
 
   return (
     <StyledWrapper>
       <div className="main">
-        <Form
-          className="form"
-          layout="vertical"
-          onFinish={() => {
-            handleSubmit();
-            return Promise.resolve();
-          }}
-        >
+        <Form className="form" layout="vertical" onFinish={(values) => handleSubmit(values)}>
           <Typography.Title className="mb-6 text-center">Sign-in</Typography.Title>
           <Form.Item
             label="Email address:"

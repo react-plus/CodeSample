@@ -6,5 +6,7 @@ export const login = createAsyncThunk<LoginResponse, LoginParamsRequest>('auth/l
   //TODO call api
   const response = await authService.login(params);
   console.log(response);
-  return {};
+  return {
+    data: null,
+  };
 });
