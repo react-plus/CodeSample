@@ -7,6 +7,9 @@
 ### Setup env
 Copy `.env.development` -> `.env`
 
+### Breakdown component using atomic design
+- [x] [atomic design](https://bradfrost.com/blog/post/atomic-web-design/)
+
 ### Core
 
 - [x] [React](https://facebook.github.io/react/)
