@@ -4,17 +4,20 @@ import { Layout, Menu, Breadcrumb, Dropdown, Avatar } from 'antd';
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
 
 import { Logo } from './styles';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { AppDispatch } from 'types';
 
 import { logout } from 'containers/Auth/slice';
+import { authSelector } from 'containers/Auth/selector';
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
 const HomePage: FC = () => {
   const dispatch: AppDispatch = useDispatch();
+
+  const auth = useSelector(authSelector);
 
   const handleLogout = useCallback(() => {
     dispatch(logout());
@@ -38,7 +41,8 @@ const HomePage: FC = () => {
             size="large"
             gap={0}
           >
-            Hihi
+            {auth.user?.firstName}
+            {auth.user?.lastName}
           </Avatar>
         </Dropdown>
       </Header>

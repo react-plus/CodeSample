@@ -4,6 +4,9 @@
 
 ## Tech Stack
 
+### Setup env
+Copy `.env.development` -> `.env`
+
 ### Core
 
 - [x] [React](https://facebook.github.io/react/)
