@@ -1,9 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { usersService } from 'services';
-import { FetchTodoResponse, FetchTodoRequest } from 'types';
+import { authService } from 'services';
+import { LoginResponse, LoginParamsRequest } from 'types';
 
-export const fetchTodo = createAsyncThunk<FetchTodoResponse, FetchTodoRequest>('signIn/fetchTodo', async (params) => {
+export const login = createAsyncThunk<LoginResponse, LoginParamsRequest>('auth/login', async (params) => {
   //TODO call api
-  const response = await usersService.fetchTodo(params);
-  return { value: response.data.value ?? 20 };
+  const response = await authService.login(params);
+  console.log(response);
+  return {};
 });

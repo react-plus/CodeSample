@@ -1,6 +1,5 @@
 import axios, { AxiosInstance } from 'axios';
 import config from 'config';
-import { getToken } from 'utils/token';
 
 const instance: AxiosInstance = axios.create({
   baseURL: config.API_URL,
@@ -9,8 +8,7 @@ const instance: AxiosInstance = axios.create({
 
 instance.interceptors.request.use(
   (config) => {
-    //TODO add token here
-    config.headers['X-Header-Token'] = getToken();
+    config.headers['X-Header-Token'] = '';
     return config;
   },
   (error) => {

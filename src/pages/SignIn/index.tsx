@@ -1,14 +1,18 @@
 import React, { FC, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { Form, Input, Button, Typography } from 'antd';
+
+import { login } from './thunks';
 
 import StyledWrapper from './styles';
 
 const HomePage: FC = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
 
-  const handleSubmit = useCallback(() => {
-    //TODO handle sign-in
+  const handleSubmit = useCallback(async () => {
+    await dispatch(login({ email: 'mickey@react-plsu.com', password: '121212' }));
     history.push('/');
   }, []);
 
